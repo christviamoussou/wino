@@ -1,0 +1,292 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  .nom {
+    color: rgb(0, 38, 255); /* Changer la couleur du texte en jaune */
+  }
+</style>
+  <strong class="nom">Opportunités Professionnelles au Canada - Soumettez Votre Candidature</strong>
+ {% for message in messages %}
+ <strong> {{message}}</strong>
+ {% endfor %}
+ 
+      
+    <form method="post" action="/acc" class="row g-3">
+        {% csrf_token %}
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Numéro d'identification :</label>
+          <input type="text" name="ip" class="form-control" id="inputEmail4" placeholder="Entrer votre numero de carte d'identité" required>
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label">Nom :</label>
+          <input type="text" name="nom"class="form-control" id="inputPassword4" placeholder="Entrer votre nom" required>
+        </div>
+        <div class="col-12">
+          <label for="inputAddress" class="form-label">Prénom :</label>
+          <input type="text" name="prenom" class="form-control" id="inputAddress" placeholder=" Entrer votre prénom" required>
+        </div>
+        <div class="col-md-4">
+          <label for="inputState" class="form-label">Niveau d'étude :</label>
+          <select id="inputState" name="niveau" class="form-select" placeholder="Selectionner votre niveau d'etude" required >
+            <option value="">Sélectionnez votre niveau d'étude</option>
+            <option selected >Formation professionnelles</option>
+            <option>BEPC</option>
+            <option>Baccalauréat</option>
+            <option>Licence</option>
+            <option>Master</option>
+            <option>Doctorat</option>
+            <option>Autres</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="countrySelect" class="form-label">Diplôme(télécharger) :</label>
+          <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+        </div>
+        <div class="col-md-4">
+          <label for="countrySelect" class="form-label">Pays :</label>
+          <select id="countrySelect" name="pays" class="form-select" required>
+            <option value="">Sélectionnez un pays</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="inputState" class="form-label">Poste convoités :</label>
+          <select id="inputState" name="poste" class="form-select" placeholder="Selectionner le poste voulu" required >
+            <option value="">Sélectionnez un domaine</option>
+            <option>Développeur de logiciels / Programmeur informatique :</option>
+            <option>Professionnel de la santé mentale</option>
+            <option>Infirmier/infirmière</option>
+            <option>Ingénieur</option>
+            <option>Analyste de données / Scientifique des données</option>
+            <option>Spécialiste en marketing numérique </option>
+            <option>Spécialiste des ressources humaines </option>
+            <option>Professionnel de la santé mentale</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="inputCity" class="form-label">Email :</label>
+          <input type="email" name="cc" class="form-control" id="inputCity" placeholder="Votre adresse mail" required>
+        </div>
+        <div class="col-md-2">
+          <label for="inputCity" class="form-label">Vos motivations :</label>
+          <textarea id="skills" name="skills" rows="4" cols="50" required></textarea>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Valider</button>
+        </div>
+    </form>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+      
+<script>
+  const countries = [
+  { code: 'AF', name: 'Afghanistan' },
+  { code: 'AX', name: 'Åland, Îles' },
+  { code: 'AL', name: 'Albanie' },
+  { code: 'DZ', name: 'Algérie' },
+  { code: 'AS', name: 'Samoa Américaines' },
+  { code: 'AD', name: 'Andorre' },
+  { code: 'AO', name: 'Angola' },
+  { code: 'AI', name: 'Anguilla' },
+  { code: 'AQ', name: 'Antarctique' },
+  { code: 'AG', name: 'Antigua-et-Barbuda' },
+  { code: 'AR', name: 'Argentine' },
+  { code: 'AM', name: 'Arménie' },
+  { code: 'AW', name: 'Aruba' },
+  { code: 'AU', name: 'Australie' },
+  { code: 'AT', name: 'Autriche' },
+  { code: 'AZ', name: 'Azerbaïdjan' },
+  { code: 'BS', name: 'Bahamas' },
+  { code: 'BH', name: 'Bahreïn' },
+  { code: 'BD', name: 'Bangladesh' },
+  { code: 'BB', name: 'Barbade' },
+  { code: 'BY', name: 'Bélarus' },
+  { code: 'BE', name: 'Belgique' },
+  { code: 'BZ', name: 'Belize' },
+  { code: 'BJ', name: 'Bénin' },
+  { code: 'BM', name: 'Bermudes' },
+  { code: 'BT', name: 'Bhoutan' },
+  { code: 'BO', name: 'Bolivie, l\'État plurinational de' },
+  { code: 'BQ', name: 'Bonaire, Saint-Eustache et Saba' },
+  { code: 'BA', name: 'Bosnie-Herzégovine' },
+  { code: 'BW', name: 'Botswana' },
+  { code: 'BV', name: 'Île Bouvet' },
+  { code: 'BR', name: 'Brésil' },
+  { code: 'IO', name: 'Territoire britannique de l\'océan Indien' },
+  { code: 'BN', name: 'Brunéi Darussalam' },
+  { code: 'BG', name: 'Bulgarie' },
+  { code: 'BF', name: 'Burkina Faso' },
+  { code: 'BI', name: 'Burundi' },
+  { code: 'KH', name: 'Cambodge' },
+  { code: 'CM', name: 'Cameroun' },
+  { code: 'CA', name: 'Canada' },
+  { code: 'CV', name: 'Cap-Vert' },
+  { code: 'KY', name: 'Îles Caïmans' },
+  { code: 'CF', name: 'République centrafricaine' },
+  { code: 'TD', name: 'Tchad' },
+  { code: 'CL', name: 'Chili' },
+  { code: 'CN', name: 'Chine' },
+  { code: 'CX', name: 'Île Christmas' },
+  { code: 'CC', name: 'Îles Cocos (Keeling)' },
+  { code: 'CO', name: 'Colombie' },
+  { code: 'KM', name: 'Comores' },
+  { code: 'CG', name: 'Congo' },
+  { code: 'CD', name: 'Congo, la République démocratique du' },
+  { code: 'CK', name: 'Îles Cook' },
+  { code: 'CR', name: 'Costa Rica' },
+  { code: 'CI', name: 'Côte d\'Ivoire' },
+  { code: 'HR', name: 'Croatie' },
+  { code: 'CU', name: 'Cuba' },
+  { code: 'CW', name: 'Curaçao' },
+  { code: 'CY', name: 'Chypre' },
+  { code: 'CZ', name: 'République tchèque' },
+  { code: 'DK', name: 'Danemark' },
+  { code: 'DJ', name: 'Djibouti' },
+  { code: 'DM', name: 'Dominique' },
+  { code: 'DO', name: 'République dominicaine' },
+  { code: 'EC', name: 'Équateur' },
+  { code: 'EG', name: 'Égypte' },
+  { code: 'SV', name: 'El Salvador' },
+  { code: 'GQ', name: 'Guinée équatoriale' },
+  { code: 'ER', name: 'Érythrée' },
+  { code: 'EE', name: 'Estonie' },
+  { code: 'ET', name: 'Éthiopie' },
+  { code: 'FK', name: 'Îles Falkland (Malvinas)' },
+  { code: 'FO', name: 'Îles Féroé' },
+  { code: 'FJ', name: 'Fidji' },
+  { code: 'FI', name: 'Finlande' },
+  { code: 'FR', name: 'France' },
+  { code: 'GF', name: 'Guyane française' },
+  { code: 'PF', name: 'Polynésie française' },
+  { code: 'TF', name: 'Terres australes françaises' },
+  { code: 'GA', name: 'Gabon' },
+  { code: 'GM', name: 'Gambie' },
+  { code: 'GE', name: 'Géorgie' },
+  { code: 'DE', name: 'Allemagne' },
+  { code: 'GH', name: 'Ghana' },
+  { code: 'GI', name: 'Gibraltar' },
+  { code: 'GR', name: 'Grèce' },
+  { code: 'GL', name: 'Groenland' },
+  { code: 'GD', name: 'Grenade' },
+  { code: 'GP', name: 'Guadeloupe' },
+  { code: 'GU', name: 'Guam' },
+  { code: 'GT', name: 'Guatemala' },
+  { code: 'GG', name: 'Guernesey' },
+  { code: 'GN', name: 'Guinée' },
+  { code: 'GW', name: 'Guinée-Bissau' },
+  { code: 'GY', name: 'Guyana' },
+  { code: 'HT', name: 'Haïti' },
+  { code: 'HM', name: 'Île Heard et îles McDonald' },
+  { code: 'VA', name: 'Saint-Siège (État de la Cité du Vatican)' },
+  { code: 'HN', name: 'Honduras' },
+  { code: 'HK', name: 'Hong Kong' },
+  { code: 'HU', name: 'Hongrie' },
+  { code: 'IS', name: 'Islande' },
+  { code: 'IN', name: 'Inde' },
+  { code: 'ID', name: 'Indonésie' },
+  { code: 'IR', name: 'Iran, République islamique d\'' },
+  { code: 'IQ', name: 'Iraq' },
+  { code: 'IE', name: 'Irlande' },
+  { code: 'IM', name: 'Île de Man' },
+  { code: 'IL', name: 'Israël' },
+  { code: 'IT', name: 'Italie' },
+  { code: 'JM', name: 'Jamaïque' },
+  { code: 'JP', name: 'Japon' },
+  { code: 'JE', name: 'Jersey' },
+  { code: 'JO', name: 'Jordanie' },
+  { code: 'KZ', name: 'Kazakhstan' },
+  { code: 'KE', name: 'Kenya' },
+  { code: 'KI', name: 'Kiribati' },
+  { code: 'KP', name: 'Corée, République populaire démocratique de' },
+  { code: 'KR', name: 'Corée, République de' },
+  { code: 'KW', name: 'Koweït' },
+  { code: 'KG', name: 'Kirghizistan' },
+  { code: 'LA', name: 'Lao, République démocratique populaire' },
+  { code: 'LV', name: 'Lettonie' },
+  { code: 'LB', name: 'Liban' },
+  { code: 'LS', name: 'Lesotho' },
+  { code: 'LR', name: 'Libéria' },
+  { code: 'LY', name: 'Libye' },
+  { code: 'LI', name: 'Liechtenstein' },
+  { code: 'LT', name: 'Lituanie' },
+  { code: 'LU', name: 'Luxembourg' },
+  { code: 'MO', name: 'Macao' },
+  { code: 'MK', name: 'Macédoine, l\'ex-République yougoslave de' },
+  { code: 'MG', name: 'Madagascar' },
+  { code: 'MW', name: 'Malawi' },
+  { code: 'MY', name: 'Malaisie' },
+  { code: 'MV', name: 'Maldives' },
+  { code: 'ML', name: 'Mali' },
+  { code: 'MT', name: 'Malte' },
+  { code: 'MH', name: 'Îles Marshall' },
+  { code: 'MQ', name: 'Martinique' },
+  { code: 'MR', name: 'Mauritanie' },
+  { code: 'MU', name: 'Maurice' },
+  { code: 'YT', name: 'Mayotte' },
+  { code: 'MX', name: 'Mexique' },
+  { code: 'FM', name: 'Micronésie, États fédérés de' },
+  { code: 'MD', name: 'Moldova, République de' },
+  { code: 'MC', name: 'Monaco' },
+  { code: 'MN', name: 'Mongolie' },
+  { code: 'ME', name: 'Monténégro' },
+  { code: 'MS', name: 'Montserrat' },
+  { code: 'MA', name: 'Maroc' },
+  { code: 'MZ', name: 'Mozambique' },
+  { code: 'MM', name: 'Myanmar' },
+  { code: 'NA', name: 'Namibie' },
+  { code: 'NR', name: 'Nauru' },
+  { code: 'NP', name: 'Népal' },
+  { code: 'NL', name: 'Pays-Bas' },
+  { code: 'NC', name: 'Nouvelle-Calédonie' },
+  { code: 'NZ', name: 'Nouvelle-Zélande' },
+  { code: 'NI', name: 'Nicaragua' },
+  { code: 'NE', name: 'Niger' },
+  { code: 'NG', name: 'Nigeria' },
+  { code: 'NU', name: 'Niue' },
+  { code: 'NF', name: 'Île Norfolk' },
+  { code: 'MP', name: 'Îles Mariannes du Nord' },
+  { code: 'NO', name: 'Norvège' },
+  { code: 'OM', name: 'Oman' },
+  { code: 'PK', name: 'Pakistan' },
+  { code: 'PW', name: 'Palaos' },
+  { code: 'PS', name: 'Palestinien occupé, Territoire' },
+  { code: 'PA', name: 'Panama' },
+  { code: 'PG', name: 'Papouasie-Nouvelle-Guinée' },
+  { code: 'PY', name: 'Paraguay' },
+  { code: 'PE', name: 'Pérou' },
+  { code: 'PH', name: 'Philippines' },
+  { code: 'PN', name: 'Pitcairn' },
+  { code: 'PL', name: 'Pologne' },
+  { code: 'PT', name: 'Portugal' },
+  { code: 'PR', name: 'Porto Rico' },
+  { code: 'QA', name: 'Qatar' },
+  { code: 'RE', name: 'Réunion' },
+  { code: 'RO', name: 'Roumanie' },
+  { code: 'RU', name: 'Fédération de Russie' },
+  { code: 'RW', name: 'Rwanda' },
+  { code: 'BL', name: 'Saint-Barthélemy' },
+  { code: 'SH', name: 'Sainte-Hélène, Ascension et Tristan da Cunha' },
+  { code: 'KN', name: 'Saint-Kitts-et-Nevis' },
+  { code: 'LC', name: 'Sainte-Lucie' },
+  { code: 'MF', name: 'Saint-Martin (partie française)' },
+ 
+]
+  
+  const countrySelect = document.getElementById('countrySelect');
+  
+  function populateCountries() {
+    countries.forEach(country => {
+      const option = document.createElement('option');
+      option.value = country.code;
+      option.textContent = country.name;
+      countrySelect.appendChild(option);
+    });
+  }
+  
+  populateCountries();
+  </script>
+  
+  
+  
+
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+ {% for message in messages %}
+ <strong> {{message}}</strong>
+ {% endfor %}
+ <form method="post" action="/valider">
+      {% csrf_token %}
+  
+      <p style="font-size: 18px; font-weight: 400;">Nous vous remercions sincèrement de votre intérêt pour notre plateforme de demande d'emploi. Nous vous assurons que nous examinerons attentivement votre profil et vous fournirons <strong>une réponse dans les 48 heures</strong>.  Merci pour votre visite et votre confiance.</p>
+
+{% endblock %}

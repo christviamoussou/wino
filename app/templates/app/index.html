@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for message in messages %}
+ <strong>{ {message} } </strong>
+{% endfor %}
+{% if user.is_authentificated %}
+<h3>Bonjour {{firstname}} bienvenue sur GodWin</h3>
+<button type="submit"><a href="/logout ">Se déconnecter</a></button>
+{% else %}
+<style>
+    /* Styles CSS personnalisés */
+    .custom-col {
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-top: 20px;
+    }
+  .pp {
+    color: rgb(0, 38, 255); /* Changer la couleur du texte en jaune */
+  }
+  .red{
+    color: rgb(5, 1, 1);
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="pp" >Le Projet Emploi du Canada : Ouverture, Diversité et Opportunités</h2>
+            <p>Le Canada, pays reconnu pour sa diversité culturelle et sa stabilité économique, offre un cadre propice à l'épanouissement professionnel. Doté d'une économie diversifiée, le Canada propose une multitude d'opportunités d'emploi dans divers secteurs.</p>
+            <h3 class="pp">Secteurs Clés de l'Emploi :</h3>
+            <ul>
+                <li><strong class="red">Technologies de l'information et de la communication (TIC) :</strong> Le Canada est un leader dans le domaine des technologies de pointe, offrant des opportunités pour les développeurs, les ingénieurs et les professionnels des TIC.</li>
+                <li><strong class="red">Santé et Sciences de la Vie :</strong> Avec un système de santé de qualité et une recherche de pointe dans les sciences de la vie, le Canada attire les professionnels de la santé, les chercheurs et les innovateurs.</li>
+                <li><strong class="red">Ressources Naturelles :</strong> Le pays dispose d'une richesse naturelle abondante, créant des opportunités pour les travailleurs du secteur de l'énergie, des mines et de la foresterie.</li>
+                <li><strong class="red">Services Financiers :</strong> Les centres financiers du Canada offrent des opportunités pour les professionnels de la finance, de la banque et des assurances.</li>
+            </ul>
+            <h3 class="pp">Politique d'Immigration Favorable :</h3>
+            <p>Le Canada encourage l'immigration qualifiée, offrant aux professionnels qualifiés du monde entier la possibilité de s'établir et de contribuer à l'économie canadienne.</p>
+            <h3  class="pp" >Cadre de Travail Favorable :</h3>
+            <p>En plus d'opportunités d'emploi diversifiées, le Canada offre un environnement de travail équilibré, favorisant un bon équilibre entre vie professionnelle et personnelle. Les politiques en matière de congés, la qualité de vie et la sécurité sociale contribuent à rendre le Canada attractif pour les travailleurs.</p>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-light"> <a href="/register">S'inscrire</a></button>
+<button type="button" class="btn btn-light"> <a href="/login">Se connecter</a></button>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+{% endif %}
+
+{% endblock %}
+
+
+

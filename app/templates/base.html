@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      /* Appliquer une taille spécifique à l'image du drapeau */
+      img {
+        width: 100px; /* Définir la largeur souhaitée */
+        height: auto; /* Ajuster automatiquement la hauteur pour conserver les proportions */
+      }
+    </style>   
+</head>
+<body>
+    <center>
+        <h2><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/1280px-Flag_of_Canada_%28Pantone%29.svg.png" alt="Drapeau du Canada"></h2>
+        
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </center>
+</body>
+</html>
