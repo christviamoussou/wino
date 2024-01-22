@@ -21,6 +21,9 @@ def register(request):
         firstname = request.POST['firstname']
         email = request.POST['email']
         password = request.POST['password']
+        if User.objects.filter(username=username):
+            messages.error(request, "Le nom d'utilisateur est pris")
+            return redirect('register')
         mon_utilisateur = User.objects.create_user(username, email, password)
         mon_utilisateur.first_name =firstname
         mon_utilisateur.save()
