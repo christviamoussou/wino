@@ -10,7 +10,44 @@
  <strong> {{message}}</strong>
  {% endfor %}
  
-      
+ <form id="uploadForm">
+  <label for="photoInput">Choisissez une photo :</label>
+  <input type="file" id="photoInput" name="photo" accept="image/*">
+  <br>
+  <canvas id="canvas" style="display:none; max-width: 300px; max-height: 300px;"></canvas>
+  <img id="previewImage" src="#" alt="Aperçu de la photo" style="display:none; max-width: 300px; max-height: 300px;">
+</form>
+<br>
+<br>
+
+<script>
+  document.getElementById('photoInput').addEventListener('change', function() {
+      var input = this;
+
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function(e) {
+              var img = new Image();
+              img.src = e.target.result;
+
+              img.onload = function() {
+                  var canvas = document.getElementById('canvas');
+                  var ctx = canvas.getContext('2d');
+                  canvas.width = 200; // définir la largeur souhaitée
+                  canvas.height = 200; // définir la hauteur souhaitée
+                  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                  document.getElementById('previewImage').src = canvas.toDataURL('image/jpeg');
+                  document.getElementById('previewImage').style.display = 'block';
+              };
+          };
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  });
+</script>
+
     <form method="post" action="/acc" class="row g-3">
         {% csrf_token %}
         <div class="col-md-6">
@@ -25,6 +62,26 @@
           <label for="inputAddress" class="form-label">Prénom :</label>
           <input type="text" name="prenom" class="form-control" id="inputAddress" placeholder=" Entrer votre prénom" required>
         </div>
+        <div class="col-md-4">
+          <label for="age">Sélectionnez votre âge :</label>
+          <select id="age" name="age" class="from-select" placeholder="Selectionner votre tranche d'age" required>
+              <option value="0-17">0-17 ans</option>
+              <option value="18-25">18-25 ans</option>
+              <option value="26-35">26-35 ans</option>
+              <option value="36-45">36-45 ans</option>
+              <option value="46-55">46-55 ans</option>
+              <option value="56+">56 ans et plus</option>
+          </select>
+      </div>
+      <div class="col-md-4">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Situation matrimoniale</option>
+            <option value="1">Célibataire</option>
+            <option value="2">Marié(e)</option>
+            <option value="3">Divorcé(e)</option>
+            <option value="3">Veuf(ve)</option>
+        </select>
+      </div>
         <div class="col-md-4">
           <label for="inputState" class="form-label">Niveau d'étude :</label>
           <select id="inputState" name="niveau" class="form-select" placeholder="Selectionner votre niveau d'etude" required >

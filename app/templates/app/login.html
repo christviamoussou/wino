@@ -9,8 +9,8 @@
 <form method="post" action="/login">
   {% csrf_token %}
   <div class="mb-3">
-    <label for="formGroupExampleInput" class="form-label">Nom :</label required>
-    <input type="text" class="form-control" name="username" id="formGroupExampleInput" placeholder="Entrer votre nom" required>
+    <label for="formGroupExampleInput" class="form-label">Nom d'utilisateur :</label required>
+    <input type="text" class="form-control" name="username" id="formGroupExampleInput" placeholder="Entrer votre nom d'utilisateur" required>
   </div>
     <label for="formGroupExampleInput2" class="form-label">Mot de passe</label>
     <input type="password" class="form-control" name="password" id="formGroupExampleInput2" placeholder="Entrer votre mot de passe" required>

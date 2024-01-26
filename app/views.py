@@ -22,12 +22,12 @@ def register(request):
         email = request.POST['email']
         password = request.POST['password']
         if User.objects.filter(username=username):
-            messages.error(request, "Le nom d'utilisateur est pris")
-            return redirect('register')
+            messages.error(request, "Le nom d'utilisateur que vous avez choisi est déjà utilisé. Veuillez en choisir un autre.")
+            return redirect('regiter')
         mon_utilisateur = User.objects.create_user(username, email, password)
         mon_utilisateur.first_name =firstname
         mon_utilisateur.save()
-        messages.success(request, 'Votre compte a ete cree avec success ')
+        messages.success(request, 'Votre compte a été crée avec success ')
         return redirect('login')
     
     return render(request, 'app/register.html')
